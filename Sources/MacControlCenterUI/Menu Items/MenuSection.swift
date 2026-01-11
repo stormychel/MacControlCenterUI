@@ -71,9 +71,10 @@ public struct MenuSection<Label: View>: View, MacControlCenterMenuItem {
     
     /// Initialize Menu Section with custom label.
     /// Note that the standard menu section header text formatting is not applied when using this initializer.
+    @_disfavoredOverload
     public init<LabelContent: View>(
         divider: Bool = true,
-        @ViewBuilder _ label: () -> LabelContent
+        @ViewBuilder label: () -> LabelContent
     ) where Label == MenuSectionText<LabelContent> {
         self.label = MenuSectionText(label())
         self.divider = divider
@@ -142,8 +143,8 @@ public struct MenuSection<Label: View>: View, MacControlCenterMenuItem {
     
     public init(
         divider: Bool = true,
-        @MacControlCenterMenuBuilder _ content: () -> [any View]
-    ) where Label == Never {
+        @MacControlCenterMenuBuilder content: () -> [any View]
+    ) where Label == EmptyView {
         self.label = nil
         self.divider = divider
         self.content = content()
@@ -159,30 +160,22 @@ public struct MenuSection<Label: View>: View, MacControlCenterMenuItem {
     @ViewBuilder
     public var viewBody: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Group {
-                if divider {
-                    MenuBody {
-                        Divider()
-                    }
-                }
-                
-                if let label {
-                    MenuBody {
-                        label
-                            .opacity(isEnabled ? 1.0 : 0.4)
-                    }
+            if divider {
+                MenuBody {
+                    Divider()
                 }
             }
-            .geometryGroupIfSupportedByPlatform()
             
-            contentBody
-        }
-    }
-    
-    @ViewBuilder
-    private var contentBody: some View {
-        if let content {
-            MenuBody(content: content)
+            if let label {
+                MenuBody {
+                    label
+                        .opacity(isEnabled ? 1.0 : 0.4)
+                }
+            }
+            
+            if let content {
+                MenuBody(content: content)
+            }
         }
     }
 }
