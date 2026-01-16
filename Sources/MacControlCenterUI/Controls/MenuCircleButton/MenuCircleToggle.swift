@@ -307,6 +307,7 @@ public struct MenuCircleToggle<Label: View>: View {
             }
         }
         .contentShape(Rectangle()) // ensures that hit test area (mouse hover and clicks) works as expected when this view is wrapped in a highlighting view
+        .id(colorScheme) // forces view update when system transitions between Dark/Light mode
     }
     
     @ViewBuilder

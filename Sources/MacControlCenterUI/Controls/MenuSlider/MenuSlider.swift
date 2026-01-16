@@ -332,6 +332,7 @@ extension MenuSlider {
             }
             .opacity(isEnabled ? 1.0 : 0.5)
             .geometryGroupIfSupportedByPlatform()
+            .id(colorScheme) // forces view update when system transitions between Dark/Light mode
         }
         
         @ViewBuilder
