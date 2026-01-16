@@ -14,7 +14,15 @@ enum MenuGeometry {
     static let menuItemStandardHoverBackColor = Color(NSColor.selectedContentBackgroundColor)
     
     static let menuHorizontalContentInset: CGFloat = 14
-    static let menuHorizontalHighlightInset: CGFloat = 4
+
+    static var menuHorizontalHighlightInset: CGFloat {
+        if #available(macOS 26, *) {
+            return 6
+        } else {
+            return 4
+        }
+    }
+
     static let menuVerticalPadding: CGFloat = 1
     static let menuItemPadding: CGFloat = 4
     static let menuItemContentStandardHeight: CGFloat = 18
