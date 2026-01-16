@@ -117,7 +117,11 @@ public struct HighlightingMenuItem<Content: View>: View, MacControlCenterMenuIte
     // MARK: Helpers
     
     private var backgroundShape: some Shape {
-        RoundedRectangle(cornerSize: .init(width: 5, height: 5))
+        if #available(macOS 26, *) {
+            RoundedRectangle(cornerSize: .init(width: 10, height: 10), style: .continuous)
+        } else {
+            RoundedRectangle(cornerSize: .init(width: 5, height: 5))
+        }
     }
     
     private var visualEffect: VisualEffect? {
