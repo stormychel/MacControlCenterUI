@@ -1,5 +1,4 @@
 // swift-tools-version:5.3
-// (be sure to update the .swift-version file when this Swift version changes)
 
 import PackageDescription
 
@@ -10,7 +9,7 @@ let package = Package(
         .library(name: "MacControlCenterUI", targets: ["MacControlCenterUI"])
     ],
     dependencies: [
-        .package(url: "https://github.com/orchetect/MenuBarExtraAccess", from: "1.2.2")
+        .package(url: "https://github.com/orchetect/MenuBarExtraAccess", from: "1.3.0")
     ],
     targets: [
         .target(name: "MacControlCenterUI", dependencies: ["MenuBarExtraAccess"])
