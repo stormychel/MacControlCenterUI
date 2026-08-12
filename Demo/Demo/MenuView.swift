@@ -77,7 +77,7 @@ struct MenuView: View {
                     ForEach(uuidContentItems, id: \.self) { uuid in
                         Text(uuid.uuidString)
                     }
-                    .font(.callout)
+                    .font(.system(size: 11))
                     .monospaced()
                     .foregroundStyle(.secondary)
 
