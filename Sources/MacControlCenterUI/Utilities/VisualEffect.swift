@@ -92,12 +92,24 @@ extension VisualEffect {
 
 extension View {
     /// Applies the appropriate window background effect for the menu based on the current platform.
+    @ViewBuilder
     func menuBackgroundEffectForCurrentPlatform() -> some View {
         if #available(macOS 26.0, *) {
-            return backgroundStyle(.ultraThinMaterial /* .thinMaterial */ )
+            menuBackgroundEffectForCurrentPlatformBase()
                 .windowResizeAnchor(.topLeading) // helps with smooth menu window resize animations
         } else {
-            return background(VisualEffect.popoverWindow())
+            menuBackgroundEffectForCurrentPlatformBase()
+        }
+    }
+
+    @ViewBuilder
+    private func menuBackgroundEffectForCurrentPlatformBase() -> some View {
+        if #available(macOS 27.0, *) {
+            backgroundStyle(.regularMaterial)
+        } else if #available(macOS 26.0, *) {
+            backgroundStyle(.ultraThinMaterial)
+        } else {
+            background(VisualEffect.popoverWindow())
         }
     }
 
