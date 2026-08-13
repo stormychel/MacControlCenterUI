@@ -20,6 +20,5 @@ struct ContentView: View {
         }
         .padding()
         .frame(minWidth: 500, minHeight: 350)
-        .background(VisualEffect.nonVibrant())
     }
 }
